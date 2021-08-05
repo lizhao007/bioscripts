@@ -24,12 +24,12 @@ def get_opts(ARGV):
 def calc_mapped_reads_count(in_bam):
 	fn = in_bam + '.read_counts.txt'
 	counts = 0
-	res = os.popen("samtools view "+in_bam)
+	res = os.popen("samtools view "+in_bam)#可视化bam，相当于生成Sam
 	for line in res:
 		data = line.strip().split()
 		if data[2] != '*':
 			counts += 1
-	with open(fn, 'w') as f_out:
+	with open(fn, 'w') as f_out:#计算有多少read比对到contig上
 		f_out.write(str(counts))
 
 
